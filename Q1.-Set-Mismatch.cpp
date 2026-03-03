@@ -1,19 +1,22 @@
 1class Solution {
 2public:
 3    vector<int> findErrorNums(vector<int>& nums) {
-4        int duplicate = -1,missing=-1;
-5       for(int i = 1; i < nums.size()+1; i++)
-6       { int count = 0 ;
-7        for(int j =0; j < nums.size(); j++)
-8        {
-9           
-10            if(nums[j]==i)
-11            count++;
-12         
-13        }
-14           if(count==2) duplicate = i;
-15            if(count == 0)missing = i;
-16       }
-17       return {duplicate,missing};
-18    }
-19};
+4        int n = nums.size();
+5        int duplicate = -1, missing = -1;
+6        
+7        vector<int> freq(n+1, 0);
+8
+9        for(int num : nums) {
+10            freq[num]++;
+11        }
+12
+13        for(int i = 1; i <= n; i++) {
+14            if(freq[i] == 0)
+15                missing = i;
+16            else if(freq[i] == 2)
+17                duplicate = i;
+18        }
+19
+20        return {duplicate, missing};
+21    }
+22};
