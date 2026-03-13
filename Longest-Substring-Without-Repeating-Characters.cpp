@@ -1,23 +1,21 @@
 1class Solution {
 2public:
 3    int lengthOfLongestSubstring(string s) {
-4        int n = s.size();
-5        int maxSize = 0;
-6
-7        for(int i = 0; i < n; i++) {
-8            vector<char> ans;
-9
-10            for(int j = i; j < n; j++) {
-11                if(find(ans.begin(), ans.end(), s[j]) == ans.end()) {
-12                    ans.push_back(s[j]);
-13                    maxSize = max(maxSize, (int)ans.size());
-14                } 
-15                else {
-16                    break;   
-17                }
-18            }
-19        }
-20        return maxSize;
-21    }
-22};
-23
+4        unordered_map<char, int> mpp;
+5        int len = 0;
+6        int maxlen = 0;
+7        int start = 0;
+8        
+9        for(int i = 0; i < s.size(); i++) {
+10            if(mpp.find(s[i]) != mpp.end() && mpp[s[i]] >= start) {
+11                start = mpp[s[i]] + 1;
+12                len = i - start + 1;
+13            } else {
+14                len++;
+15            }
+16            mpp[s[i]] = i;
+17            maxlen = max(len, maxlen);
+18        }
+19        return maxlen;
+20    }
+21};
