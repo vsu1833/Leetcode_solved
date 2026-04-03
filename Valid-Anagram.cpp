@@ -1,19 +1,19 @@
 1class Solution {
 2public:
 3    bool isAnagram(string s, string t) {
-4        if (s.length() != t.length()) {
-5            return false;
-6        }
-7        int counts[26] = {0};
-8        for (int i = 0; i < s.length(); i++) {
-9            counts[s[i] - 'a']++;
-10            counts[t[i] - 'a']--;
-11        }
-12        for (int i = 0; i < 26; i++) {
-13            if (counts[i] != 0) {
-14                return false;
-15            }
-16        }
-17        return true;
+4      if (s.length() != t.length()) return false;
+5    vector<int> count(26,0);
+6    for(int i = 0; i < s.size(); i++)
+7    {
+8        count[s[i]-'a']++;
+9        count[t[i]-'a']--;
+10
+11    }
+12
+13     for (int c : count) {
+14        if (c != 0) return false;
+15    }
+16
+17    return true;
 18    }
 19};
