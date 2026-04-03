@@ -10,7 +10,7 @@
 10            return {mpp[rem],i};
 11        }
 12        mpp[nums[i]]=i;
-13       } 
+13       }
 14       return {-1,-1};
 15    }
 16};
